@@ -2,7 +2,7 @@ Summary:	LAL wrapping of the XML library
 Summary(pl.UTF-8):	Obudowanie LAL do biblioteki XML
 Name:		lal-xml
 Version:	1.2.4
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://software.ligo.org/lscsoft/source/lalsuite/lalxml-%{version}.tar.xz
@@ -18,8 +18,8 @@ BuildRequires:	libtool >= 2:2
 BuildRequires:	libxml2-devel >= 1:2.6
 BuildRequires:	octave-devel >= 1:3.2.0
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 1:2.6
-BuildRequires:	python-numpy-devel >= 1:1.7
+BuildRequires:	python3-devel
+BuildRequires:	python3-numpy-devel
 BuildRequires:	swig >= 3.0.12
 BuildRequires:	swig-python >= 2.0.12
 BuildRequires:	tar >= 1:1.22
@@ -76,18 +76,18 @@ Octave interface for LAL XML.
 %description -n octave-lalxml -l pl.UTF-8
 Interfejs Octave do biblioteki LAL XML.
 
-%package -n python-lalxml
+%package -n python3-lalxml
 Summary:	Python bindings for LAL XML
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki LAL XML
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	python-lal >= 6.18.0
-Requires:	python-modules >= 1:2.6
+Requires:	python3-lal >= 6.18.0
+Requires:	python3-modules >= 1:2.6
 
-%description -n python-lalxml
+%description -n python3-lalxml
 Python bindings for LAL XML.
 
-%description -n python-lalxml -l pl.UTF-8
+%description -n python3-lalxml -l pl.UTF-8
 Wiązania Pythona do biblioteki LAL XML.
 
 %prep
@@ -101,6 +101,7 @@ Wiązania Pythona do biblioteki LAL XML.
 %{__autoheader}
 %{__automake}
 %configure \
+	PYTHON=%{__python3} \
 	--disable-dependency-tracking \
 	--enable-swig
 %{__make}
@@ -116,8 +117,6 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/etc/shrc.d
 %{__mv} $RPM_BUILD_ROOT%{_sysconfdir}/*sh $RPM_BUILD_ROOT/etc/shrc.d
-
-%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -153,8 +152,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/octave/*/site/oct/*/lalxml.oct
 
-%files -n python-lalxml
+%files -n python3-lalxml
 %defattr(644,root,root,755)
-%dir %{py_sitedir}/lalxml
-%attr(755,root,root) %{py_sitedir}/lalxml/_lalxml.so
-%{py_sitedir}/lalxml/*.py[co]
+%dir %{py3_sitedir}/lalxml
+%attr(755,root,root) %{py3_sitedir}/lalxml/_lalxml.so
+%{py3_sitedir}/lalxml/*.py
+%{py3_sitedir}/lalxml/__pycache__
