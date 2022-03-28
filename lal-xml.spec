@@ -2,7 +2,7 @@ Summary:	LAL wrapping of the XML library
 Summary(pl.UTF-8):	Obudowanie LAL do biblioteki XML
 Name:		lal-xml
 Version:	1.2.4
-Release:	5
+Release:	6
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://software.ligo.org/lscsoft/source/lalsuite/lalxml-%{version}.tar.xz
