@@ -2,13 +2,14 @@ Summary:	LAL wrapping of the XML library
 Summary(pl.UTF-8):	Obudowanie LAL do biblioteki XML
 Name:		lal-xml
 Version:	1.2.4
-Release:	6
+Release:	7
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://software.ligo.org/lscsoft/source/lalsuite/lalxml-%{version}.tar.xz
+Source0:	http://software.igwn.org/lscsoft/source/lalsuite/lalxml-%{version}.tar.xz
 # Source0-md5:	8890f9630f59a5cc9e9c32df29f5da5c
 Patch0:		%{name}-env.patch
-URL:		https://wiki.ligo.org/DASWG/LALSuite
+Patch1:		%{name}-octave.patch
+URL:		https://wiki.ligo.org/Computing/LALSuite
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gsl-devel >= 1.13
@@ -20,7 +21,7 @@ BuildRequires:	octave-devel >= 1:3.2.0
 BuildRequires:	pkgconfig
 BuildRequires:	python3-devel
 BuildRequires:	python3-numpy-devel
-BuildRequires:	swig >= 3.0.12
+BuildRequires:	swig >= 4.1.0
 BuildRequires:	swig-python >= 2.0.12
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -83,6 +84,7 @@ Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	python3-lal >= 6.18.0
 Requires:	python3-modules >= 1:2.6
+Obsoletes:	python-lalxml < 1.2.4-4
 
 %description -n python3-lalxml
 Python bindings for LAL XML.
@@ -93,6 +95,7 @@ Wiązania Pythona do biblioteki LAL XML.
 %prep
 %setup -q -n lalxml-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -103,6 +106,7 @@ Wiązania Pythona do biblioteki LAL XML.
 %configure \
 	PYTHON=%{__python3} \
 	--disable-dependency-tracking \
+	--disable-silent-rules \
 	--enable-swig
 %{__make}
 

@@ -1,0 +1,16 @@
+--- lalxml-1.2.4/gnuscripts/lalsuite_swig.m4.orig	2017-02-03 20:39:20.000000000 +0100
++++ lalxml-1.2.4/gnuscripts/lalsuite_swig.m4	2023-01-23 06:21:14.412763138 +0100
+@@ -280,13 +280,7 @@ AC_DEFUN([LALSUITE_USE_SWIG_OCTAVE],[
+     # is installed in the same directory as Octave, .oct files will be found by
+     # Octave without having to add to OCTAVE_PATH
+     AC_MSG_CHECKING([${OCTAVE} .oct installation directory])
+-    octave_prefix=[`${octave_cfg} -p PREFIX 2>/dev/null | ${SED} -e 's|/*$||'`]
+     octexecdir=[`${octave_cfg} -p LOCALVEROCTFILEDIR 2>/dev/null | ${SED} -e 's|/*$||'`]
+-    octexecdir=[`echo ${octexecdir} | ${SED} -e "s|^${octave_prefix}/||"`]
+-    AS_IF([test "x`echo ${octexecdir} | ${SED} -n -e '\|^/|p'`" != x],[
+-      AC_MSG_ERROR([could not build relative path from "${octexecdir}"])
+-    ])
+-    octexecdir='${prefix}'/"${octexecdir}"
+     AC_MSG_RESULT([${octexecdir}])
+     AC_SUBST([octexecdir])
+ 
