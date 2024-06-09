@@ -1,0 +1,10 @@
+--- lalxml-1.2.4/src/LALXML.c.orig	2015-03-27 05:14:39.000000000 +0100
++++ lalxml-1.2.4/src/LALXML.c	2024-06-09 16:58:09.395143737 +0200
+@@ -29,6 +29,7 @@
+ #include <libxml/tree.h>
+ #include <libxml/xpath.h>
+ #include <libxml/xpathInternals.h>
++#include <libxml/xmlsave.h>
+ #include <libxml/xmlschemas.h>
+ 
+ #include <lal/LALStdio.h>
