@@ -95,9 +95,9 @@ Wiązania Pythona do biblioteki LAL XML.
 
 %prep
 %setup -q -n lalxml-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P 0 -p1
+%patch -P 1 -p1
+%patch -P 2 -p1
 
 %build
 %{__libtoolize}
