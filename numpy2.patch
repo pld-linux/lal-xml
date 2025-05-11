@@ -1,0 +1,35 @@
+--- lalxml-1.2.4/gnuscripts/lalsuite_swig.m4~	2025-05-11 15:52:07.000000000 +0200
++++ lalxml-1.2.4/gnuscripts/lalsuite_swig.m4	2025-05-11 15:54:09.069998383 +0200
+@@ -436,14 +436,7 @@
+ 
+     # determine Python preprocessor flags
+     AC_SUBST([SWIG_PYTHON_CPPFLAGS],[])
+-    python_out=[`cat <<EOD | ${PYTHON} - 2>/dev/null
+-import sys
+-import distutils.sysconfig as cfg
+-import numpy.lib.utils as npyutil
+-sys.stdout.write( '-I' + cfg.get_python_inc())
+-sys.stdout.write(' -I' + cfg.get_python_inc(plat_specific=1))
+-sys.stdout.write(' -I' + npyutil.get_include())
+-EOD`]
++    python_out=[`numpy-config --cflags`]
+     AS_IF([test $? -ne 0],[
+       AC_MSG_ERROR([could not determine Python preprocessor flags])
+     ])
+@@ -459,6 +452,8 @@
+ cflags = cfg.get_config_var('CFLAGS').split()
+ cflags = [f for f in cflags if f != '-DNDEBUG']
+ sys.stdout.write(" ".join(cflags))
++sys.stdout.write(' -I' + cfg.get_python_inc())
++sys.stdout.write(' -I' + cfg.get_python_inc(plat_specific=1))
+ EOD`]
+     AS_IF([test $? -ne 0],[
+       AC_MSG_ERROR([could not determine Python compiler flags])
+@@ -502,6 +502,7 @@
+     # check for Python and NumPy headers
+     LALSUITE_PUSH_UVARS
+     CPPFLAGS="${SWIG_PYTHON_CPPFLAGS}"
++    CFLAGS="${SWIG_PYTHON_CFLAGS}"
+     AC_CHECK_HEADER([Python.h],[],[
+       AC_MSG_ERROR([could not find the header "Python.h"])
+     ],[

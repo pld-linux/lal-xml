@@ -2,7 +2,7 @@ Summary:	LAL wrapping of the XML library
 Summary(pl.UTF-8):	Obudowanie LAL do biblioteki XML
 Name:		lal-xml
 Version:	1.2.4
-Release:	9
+Release:	10
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://software.igwn.org/lscsoft/source/lalsuite/lalxml-%{version}.tar.xz
@@ -10,6 +10,7 @@ Source0:	http://software.igwn.org/lscsoft/source/lalsuite/lalxml-%{version}.tar.
 Patch0:		%{name}-env.patch
 Patch1:		%{name}-octave.patch
 Patch2:		%{name}-libxml2.patch
+Patch3:		numpy2.patch
 URL:		https://wiki.ligo.org/Computing/LALSuite
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
@@ -98,6 +99,7 @@ Wiązania Pythona do biblioteki LAL XML.
 %patch -P 0 -p1
 %patch -P 1 -p1
 %patch -P 2 -p1
+%patch -P 3 -p1
 
 %build
 %{__libtoolize}

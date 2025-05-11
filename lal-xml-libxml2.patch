@@ -8,3 +8,13 @@
  #include <libxml/xmlschemas.h>
  
  #include <lal/LALStdio.h>
+--- lalxml-1.2.4/gnuscripts/lalsuite_gccflags.m4~	2016-09-13 16:51:01.000000000 +0200
++++ lalxml-1.2.4/gnuscripts/lalsuite_gccflags.m4	2025-05-11 15:58:41.169998418 +0200
+@@ -30,7 +30,6 @@
+       -g3
+       -Wall
+       -W
+-      -Werror
+       -Wmissing-prototypes
+       -Wstrict-prototypes
+       -Wshadow
